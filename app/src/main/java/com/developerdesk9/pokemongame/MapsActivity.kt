@@ -28,6 +28,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     var oldLocation :Location? =null
 
+    var powerColleted: Double = 0.00
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
@@ -163,16 +165,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                         )
 
 
-                        for (items in listofPockemon){
-//                            var items = listofPockemon[i]
+                        for (i in 0..listofPockemon.size-1){
+
+                            var items = listofPockemon[i]
                             if (!items.isCatched){
-                                val pockemoncoordinates = LatLng(items.lat!!, items.long!!)
+                                val pockemoncoordinates = LatLng(items.location!!.latitude, items.location!!.longitude)
+
+//                                Toast.makeText(applicationContext,location!!.distanceTo(items.location).toString(),Toast.LENGTH_SHORT).show()
+//                                Log.d("difference",location!!.distanceTo(items.location).toString())
+
+
+                                if (location!!.distanceTo(items.location)<100){
+                                    items.isCatched=true
+                                    listofPockemon[i]=items
+                                    powerColleted+= items.power!!
+                                    Toast.makeText(applicationContext,"Pockemon Collected having power ${items.power}",Toast.LENGTH_SHORT).show()
+                                    continue
+                                }
+
                                 mMap.addMarker(MarkerOptions()
                                         .position(pockemoncoordinates)
-                                        .title(items.title)
-                                        .snippet(items.des)
+                                        .title(items.title,)
+                                        .snippet(items.des+" Power of Pockemon= ${items.power}")
                                         .icon(BitmapDescriptorFactory.fromResource(items.image!!))
                                 )
+
+
                             }
 
                         }
@@ -186,8 +204,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }catch (ex: Exception){}
 
 
-
-
             } // while loop ended here
 
         }
@@ -196,8 +212,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     var listofPockemon = ArrayList<Pockemon>()
 
     fun addPockemon(){
-        listofPockemon.add(Pockemon("Pockemon Ball","BBD Lucknow",10.00,21.88,81.05,false,R.drawable.pokeballsmall))
-        listofPockemon.add(Pockemon("Turtle","IIT Naya Raipur",40.00,21.1285,81.7662,false,R.drawable.bulbasaur))
+        listofPockemon.add(Pockemon("Pockemon Ball","BBD Lucknow",10.00,81.0590,26.8887,false,R.drawable.pokeballsmall))
+        listofPockemon.add(Pockemon("Turtle","IITT Naya Raipur",40.00,21.1285,81.7662,false,R.drawable.bulbasaur))
         listofPockemon.add(Pockemon("Dragon","IIT Kanpur",70.00,26.5123,80.2329,false,R.drawable.charmander))
         listofPockemon.add(Pockemon("Square Turtle","IIT Kharagpur",555.00,22.3145,87.3091,false,R.drawable.squirtle))
 

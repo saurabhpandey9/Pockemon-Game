@@ -1,14 +1,14 @@
 package com.developerdesk9.pokemongame
 
 import android.graphics.drawable.Drawable
+import android.location.Location
 
 class Pockemon {
 
     var title: String? = null
     var des: String? = null
     var power : Double? =null
-    var lat : Double? =null
-    var long: Double? =null
+    var location : Location? = null
     var isCatched:Boolean = false
     var image: Int? = null
 
@@ -24,8 +24,9 @@ class Pockemon {
         this.title = title
         this.des = des
         this.power = power
-        this.lat = lat
-        this.long = long
+        this.location = Location(title)
+        this.location!!.latitude= lat!!
+        this.location!!.longitude=long!!
         this.isCatched = isCatched
         this.image = image
     }
