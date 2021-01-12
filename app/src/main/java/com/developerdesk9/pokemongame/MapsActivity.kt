@@ -9,7 +9,12 @@ import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -179,6 +184,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                                     items.isCatched=true
                                     listofPockemon[i]=items
                                     powerColleted+= items.power!!
+
+                                    CustomAlert(items)
                                     Toast.makeText(applicationContext,"Pockemon Collected having power ${items.power}",Toast.LENGTH_SHORT).show()
                                     continue
                                 }
@@ -209,11 +216,42 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+
+    fun CustomAlert(items:Pockemon){
+
+
+        var mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_alert_layout, null)
+
+
+        var total_score = mDialogView.findViewById<TextView>(R.id.alert_total_score)
+        var tv2 = mDialogView.findViewById<TextView>(R.id.alert_tv2)
+
+        var img = mDialogView.findViewById<ImageView>(R.id.alert_d_img)
+        img.setImageResource(items.image!!)
+
+        total_score.text = "Total Score: $powerColleted"
+        tv2.text = "You have collected ${items.title} , Power = ${items.power}"
+
+        val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
+
+        var mAlertDialog = mBuilder.show()
+
+        mAlertDialog.setCanceledOnTouchOutside(false)
+
+
+        var btn_exit = mDialogView.findViewById<Button>(R.id.btn)
+        btn_exit.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+
+    }
+
+
     var listofPockemon = ArrayList<Pockemon>()
 
     fun addPockemon(){
         listofPockemon.add(Pockemon("Pockemon Ball","BBD Lucknow",10.00,81.0590,26.8887,false,R.drawable.pokeballsmall))
-        listofPockemon.add(Pockemon("Turtle","IITT Naya Raipur",40.00,21.1285,81.7662,false,R.drawable.bulbasaur))
+        listofPockemon.add(Pockemon("Turtle","IIIT Naya Raipur",40.00,21.1285,81.7662,false,R.drawable.bulbasaur))
         listofPockemon.add(Pockemon("Dragon","IIT Kanpur",70.00,26.5123,80.2329,false,R.drawable.charmander))
         listofPockemon.add(Pockemon("Square Turtle","IIT Kharagpur",555.00,22.3145,87.3091,false,R.drawable.squirtle))
 
