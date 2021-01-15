@@ -11,7 +11,7 @@
 
 ## About 
 
-This pockemon game is based on the concept of hiding pockemon balls at location in google maps. User needs to visit to those location to collect those balls.Once who collected maximum ball at the end will win the game. 
+This pockemon game is based on the concept of hiding pockemon balls at different location in google maps. User needs to visit those locations to collect the balls.Once who collected maximum ball at the end will win the game. 
 
 
 
@@ -26,10 +26,9 @@ This pockemon game is based on the concept of hiding pockemon balls at location 
 
 ### Basic layout
 
-|<img src="Documentation/Snapshots/Screenshot_2021-02-06-17-50-08-523_com.developerdesk9.pokemongame.jpg" width="256" height="455">
-|<img src="Documentation/Snapshots/Screenshot_1610474788.png" width="256" height="455">
-<img src="Documentation/Snapshots/Screenshot_1610474586.png" width="256" height="455">
-|:--:|:--:|:--:|
+
+|![](Documentation/Snapshots/Screenshot_2021-02-06-17-50-08-523_com.developerdesk9.pokemongame.jpg?raw=true)|![](Documentation/Snapshots/Screenshot_1610474788.png?raw=true)|![](Documentation/Snapshots/Screenshot_1610474586.png?raw=true)|
+|:---:|:---:|:---:|
 |**Pockemon on different location**|**Pockemon catched**|**Game points is increasing**|
 
 
